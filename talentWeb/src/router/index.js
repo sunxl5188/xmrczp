@@ -10,8 +10,8 @@ import StaffList from "@/components/StaffList"
 import StaffDetail from "@/components/StaffDetail"
 
 import Article from "@/components/Article"
-import ArticleShow from "@/components/ArticleShow"
-import ArticleList from "@/components/ArticleList"
+import ArticleList1 from "@/components/ArticleList1"
+import ArticleList2 from "@/components/ArticleList2"
 import ArticleDetail from "@/components/ArticleDetail"
 import Search from "@/components/Search"
 
@@ -50,7 +50,7 @@ export default new Router({
 			}
 		},
 		{
-			path: "/about", name: "About", component: About, redirect: "/about/introduce", meta: { }, children: [
+			path: "/about", name: "About", component: About, redirect: "/about/introduce", meta: {}, children: [
 				{
 					path: "introduce", component: Introduce, alias: "/about", meta: {
 						title: "厦门高新人才-公司简介"
@@ -62,44 +62,38 @@ export default new Router({
 					}
 				},
 				{
-					path: "staff", component: Staff, redirect: "/about/staff/staffList", meta: { }, children: [
+					path: "staff", component: Staff, redirect: "/about/staff/staffList", meta: {}, children: [
 						{
 							path: "staffList", component: StaffList, alias: "/about/staff", meta: {
 								title: "厦门高新人才-员工风采"
 							}
 						},
-						{path: "staffDetail", name: "StaffDetail", component: StaffDetail, meta: { }}
+						{path: "staffDetail", name: "StaffDetail", component: StaffDetail, meta: {}}
 					]
 				}
 			]
 		},
 		{
-			path: "/article", name: "Article", component: Article, redirect: "/article/list1", meta: { }, children: [
+			path: "/article", name: "Article", component: Article, redirect: "/article/list1", meta: {}, children: [
 				{
-					path: "list1", component: ArticleShow, meta: { }, children: [
+					path: "list1", name: "list1", component: ArticleList1, meta: {keepAlive: true}, children: [
 						{
-							path: "", name: "list1", component: ArticleList, meta: {
-								title: "厦门高新人才-企业动态",
-								cid: "list1",
-								keepAlive: true
+							path: "detail", name: "detailA", component: ArticleDetail, meta: {
+								title: "厦门高新人才-企业动态"
 							}
-						},
-						{path: "detail", name: "detailA", component: ArticleDetail, meta: { }}
+						}
 					]
 				},
 				{
-					path: "list2", component: ArticleShow, children: [
+					path: "list2", name: "list2", component: ArticleList2, meta: {keepAlive: true}, children: [
 						{
-							path: "", name: "list2", component: ArticleList, meta: {
-								title: "厦门高新人才-资讯动态",
-								cid: "list2",
-								keepAlive: true
+							path: "detail", name: "detailB", component: ArticleDetail, meta: {
+								title: "厦门高新人才-资讯动态"
 							}
-						},
-						{path: "detail", name: "detailB", component: ArticleDetail, meta: { }}
+						}
 					]
 				},
-				{path: "search", name: "search", component: Search, meta: { }}
+				{path: "search", name: "search", component: Search, meta: {}}
 			]
 		},
 		{
@@ -112,14 +106,14 @@ export default new Router({
 			]
 		},
 		{
-			path: "/join", name: "Join", component: Join, meta: { }, children: [
+			path: "/join", name: "Join", component: Join, meta: {}, children: [
 				{
 					path: "joinList", name: "JoinList", component: JoinList, alias: "/join", meta: {
 						title: "厦门高新人才-加入我们",
 						keepAlive: true
 					}
 				},
-				{path: "joinDetail", name: "JoinDetail", component: JoinDetail, meta: { }}
+				{path: "joinDetail", name: "JoinDetail", component: JoinDetail, meta: {}}
 			]
 		},
 		{path: "/contact", name: "Contact", component: Contact, meta: {title: "厦门高新人才-联系我们"}},

@@ -41,6 +41,7 @@
 		mounted () {
 			let that = this
 			let id = that.$route.query.id
+
 			if (/[0-9]+$/.test(id) === false) {
 				this.layer.alert("非法访问", function (index) {
 					that.layer.close(index)
@@ -48,6 +49,7 @@
 					return false
 				})
 			}
+
 			request.getRequest("GetInfo", {
 				id: id
 			}).then(res => {
