@@ -7,17 +7,25 @@
                 <div class="news-slide pb-20" v-if="TopList.length === 1" v-for="item in TopList">
                     <div class="media">
                         <div class="media-left">
-                            <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}">
+                            <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}" v-if="item.LinkUri===''">
                                 <img class="Img" src="../../static/images/nopic.jpg" v-if="item.ImageUri===''">
                                 <img class="Img" :src="item.ImageUri"
                                      v-if="item.ImageUri !==''">
                             </router-link>
+                            <a :href="item.LinkUri" target="_blank" v-if="item.LinkUri!==''">
+                                <img class="Img" src="../../static/images/nopic.jpg" v-if="item.ImageUri===''">
+                                <img class="Img" :src="item.ImageUri"
+                                     v-if="item.ImageUri !==''">
+                            </a>
                         </div>
                         <div class="media-body">
                             <div class="media-title">
-                                <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}">
+                                <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}" v-if="item.LinkUri===''">
                                     {{cutStr(item.DocTitle, 24)}}
                                 </router-link>
+                                <a :href="item.LinkUri" target="_blank" v-if="item.LinkUri!==''">
+                                    {{cutStr(item.DocTitle, 24)}}
+                                </a>
                             </div>
                             <div class="lh20 c999">{{item.PublishTime}}</div>
                         </div>
@@ -28,17 +36,25 @@
                     <swiper-slide v-for="(item, index) in TopList" :key="index">
                         <div class="media">
                             <div class="media-left">
-                                <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}">
+                                <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}" v-if="item.LinkUri===''">
                                     <img class="Img" src="../../static/images/nopic.jpg" v-if="item.ImageUri===''">
                                     <img class="Img" :src="item.ImageUri"
                                          v-if="item.ImageUri !==''">
                                 </router-link>
+                                <a :href="item.LinkUri" target="_blank" v-if="item.LinkUri!==''">
+                                    <img class="Img" src="../../static/images/nopic.jpg" v-if="item.ImageUri===''">
+                                    <img class="Img" :src="item.ImageUri"
+                                         v-if="item.ImageUri !==''">
+                                </a>
                             </div>
                             <div class="media-body">
                                 <div class="media-title">
-                                    <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}">
+                                    <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}" v-if="item.LinkUri===''">
                                         {{cutStr(item.DocTitle, 24)}}
                                     </router-link>
+                                    <a :href="item.LinkUri" v-if="item.LinkUri!==''">
+                                        {{cutStr(item.DocTitle, 24)}}
+                                    </a>
                                 </div>
                                 <div class="lh20 c999">{{item.PublishTime}}</div>
                             </div>
@@ -51,10 +67,12 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pb-30" v-for="item in list">
                         <p class="font12 c999">{{formatDate(item.PublishTime)}}</p>
-                        <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}"
-                                     class="font18 lh22 c333">
+                        <router-link :to="{path:'/article/'+classId+'/detail',query:{id:item.ID}}" class="font18 lh22 c333" v-if="item.LinkUri===''">
                             {{item.DocTitle}}
                         </router-link>
+                        <a :href="item.LinkUri" target="_blank" class="font18 lh22 c333" v-if="item.LinkUri!==''">
+                            {{item.DocTitle}}
+                        </a>
                     </div>
                     <div class="loading" v-if="loading === true">
                         <img src="../../static/images/loading.gif" alt="">

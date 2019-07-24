@@ -1,6 +1,6 @@
 class requestA {
 	constructor () {
-		this.baseUrl = "https://test.xmrc.com.cn/GaoxinApi/api/info/"
+		this.baseUrl = "http://www.xmgxrc.com/GaoxinApi/api/info"
 		this.timeOut = 3000
 		this.responsetype = "json"
 		this.responseEncoding = "utf8"
